@@ -1,3 +1,5 @@
+# This is to quickly setup a magento environment for local development in vagrant
+
 $script = <<SCRIPT
 apt-get -y install git
 	chown -R vagrant:vagrant /var/log/apache2
