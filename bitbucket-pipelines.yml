@@ -1,0 +1,17 @@
+# This is a sample build configuration for PHP.
+# Check our guides at https://confluence.atlassian.com/x/e8YWN for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+# -------
+# This is a pipeline to code check magento 1 and can modify for magento 2 using phpcs
+image: willhallonline/drupal-phpcs
+
+pipelines:
+  default:
+    - step:
+        script: # Modify the commands below to build your repository.
+          - apt-get -y install git
+          - git clone https://github.com/magento-ecg/coding-standard.git
+          - phpcs --config-set installed_paths "$BITBUCKET_CLONE_DIR/coding-standard"
+          - phpcs --standard=Ecg --extensions=php -v "$BITBUCKET_CLONE_DIR/app/code/"
